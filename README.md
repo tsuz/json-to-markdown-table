@@ -11,34 +11,33 @@ var app = require('json-to-markdown');
 var columns = [
     'a',
     'b',
-    'c',
+    'c'
 ];
 
 
 var object = [
     {
         a: 'asdfa',
-        b: '239487',
-        c: '234',
-    },
-    {
+        b: [['239487','asdff'],['239487','asdff']],
+        c: {c: 'asdf',g: ['239487','asdff']},
+    },{
         d: 'efg',
-        e: 'hij',
+        e: [],
         f: 'klm'
     },
     {
         a: 'sdf',
         b: 'gsdf',
-        c: 'sfd',
+        c: null
     }
 ];
 
 var tableMdString = app(object, columns);
 
-//   |a|b|c|
-//   |----|----|----|
-//   |asdfa|239487|234|
-//   |sdf|gsdf|sfd|
+// |a|b|c|
+// |----|----|----|
+// |asdfa|[ [ 239487, asdff ], [ 239487, asdff ] ]|{"c":"asdf","g":"[ 239487, asdff ]"}|
+// |sdf|gsdf|{null}|
 
 
 ```
