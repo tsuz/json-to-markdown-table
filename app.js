@@ -35,7 +35,10 @@ function createTable(object, columns) {
     object.forEach(function(row) {
 
         var rows = _.map(columns, function(column) {
-                if(_.isArray(row[column])) {
+                if(_.isUndefined(row[column])) {
+                    return base;
+                }
+                else if(_.isArray(row[column])) {
                     return base + '[ ' + row[column].join(', ') + ' ]';
                 }
                 else if(_.isObject(row[column])) {
@@ -44,7 +47,12 @@ function createTable(object, columns) {
                 return base + row[column];
             });
 
-        outputString += rows.join('') + '|\n';
+        // Remove rows with empty cells
+        var empty = _.every(rows, function(row) {
+            return row.length === 1;
+        });
+
+        if(!empty) outputString += rows.join('') + '|\n';
     });
 
     return outputString;

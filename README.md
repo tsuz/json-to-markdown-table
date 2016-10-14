@@ -22,6 +22,11 @@ var object = [
         c: '234',
     },
     {
+        d: 'efg',
+        e: 'hij',
+        f: 'klm'
+    },
+    {
         a: 'sdf',
         b: 'gsdf',
         c: 'sfd',
