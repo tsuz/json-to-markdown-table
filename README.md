@@ -6,7 +6,7 @@ Transform JSON object to markdown style table
 
 
 ```
-var app = require('json-to-markdown-table');
+var app = require('json-to-markdown');
 
 var columns = [
     'a',

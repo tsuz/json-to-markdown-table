@@ -1,5 +1,5 @@
 {
-  "name": "json-to-markdown-table",
+  "name": "json-to-markdown",
   "version": "1.0.0",
   "description": "Transform JSON object to markdown style table",
   "main": "app",
