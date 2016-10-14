@@ -35,17 +35,8 @@ function createTable(object, columns) {
     object.forEach(function(row) {
 
         var rows = _.map(columns, function(column) {
-                if(_.isUndefined(row[column])) {
-                    return base;
-                }
-                else if(_.isArray(row[column])) {
-                    return base + '[ ' + row[column].join(', ') + ' ]';
-                }
-                else if(_.isObject(row[column])) {
-                    return base + JSON.stringify(row[column]);
-                }
-                return base + row[column];
-            });
+            return base + formatDataTypes(row[column]);
+        });
 
         // Remove rows with empty cells
         var empty = _.every(rows, function(row) {
@@ -56,4 +47,27 @@ function createTable(object, columns) {
     });
 
     return outputString;
+}
+
+/**
+ * Format datatypes
+ * @param value
+ * @returns {*}
+ */
+function formatDataTypes(value) {
+    if(_.isUndefined(value)) {
+        return '';
+    }
+    else if(_.isNull(value)) {
+        return '{null}';
+    }
+    else if(_.isArray(value)) {
+        var mapped = _.map(value, formatDataTypes);
+        return '[ ' + mapped.join(', ') + ' ]';
+    }
+    else if(_.isObject(value)) {
+        var mapped = _.mapValues(value, formatDataTypes);
+        return JSON.stringify(mapped);
+    }
+    return value;
 }
