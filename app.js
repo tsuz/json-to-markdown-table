@@ -20,10 +20,10 @@ function createTable(object, columns) {
 
     var base = '|';
     // Create columns
-    var outputString = _.reduce(columns, function(sum, current) {
-        return sum + base + current;
+    var outputString = _.map(columns, (column) => {
+        return _.isObject(column) ? column.label : column;
     });
-    outputString = base + outputString + '|\n';
+    outputString = base + outputString.join(base) + '|\n';
 
     // Create table format in markdown
     _.times(columns.length, function() {
@@ -35,7 +35,8 @@ function createTable(object, columns) {
     object.forEach(function(row) {
 
         var rows = _.map(columns, function(column) {
-            return base + formatDataTypes(row[column]);
+            let key = _.isObject(column) ? column.key: column;
+            return base + formatDataTypes(row[key]);
         });
 
         // Remove rows with empty cells
