@@ -42,3 +42,7 @@ var tableMdString = app(object, columns);
 
 ```
 
+This yields
+
+![Yields Markdown Table](images/example.png?raw=true "Table Markdown")
+
