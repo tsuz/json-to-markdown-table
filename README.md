@@ -9,7 +9,7 @@ Transform JSON object to markdown style table
 var app = require('json-to-markdown');
 
 var columns = [
-    'a',
+    {key: a, label: 'custom title'},
     'b',
     'c'
 ];
@@ -34,7 +34,7 @@ var object = [
 
 var tableMdString = app(object, columns);
 
-// |a|b|c|
+// |custom title|b|c|
 // |----|----|----|
 // |asdfa|[ [ 239487, asdff ], [ 239487, asdff ] ]|{"c":"asdf","g":"[ 239487, asdff ]"}|
 // |sdf|gsdf|{null}|
